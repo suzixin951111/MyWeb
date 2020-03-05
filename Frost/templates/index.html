@@ -2,10 +2,48 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js"></script>
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css" rel="external nofollow">
+    <script src="../static/js/bootstrap.js"></script>
 </head>
-<body>
+<body style="padding-left: 10px">
 <h1>Frost</h1>
 <h3 style="color: cornflowerblue;font-family: '微软雅黑 Light',serif">我的个人网站</h3>
+<div id="login" style="width: 500px;padding-bottom: 10px;padding-top: 10px">
+    <form>
+        <div class="form-group">
+            <label for="iptUserName">UserName</label>
+            <input type="email" class="form-control" id="iptUserName" placeholder="UserName" style="width: 40%">
+        </div>
+        <div class="form-group">
+            <label for="iptPassword">Password</label>
+            <input type="password" class="form-control" id="iptPassword" placeholder="Password" style="width: 40%">
+        </div>
+        <button type="button" class="btn btn-primary" id="btnSignIn">SignIn</button>
+    </form>
+
+
+    <script type="text/javascript">
+        //登录按钮点击事件
+        $("#btnSignIn").click(function () {
+            console.log("点击登录")
+            $.ajax({
+                "url": "/login/",
+                "type": "POST",
+                "dataType": "json",
+                "data": {
+                    "username": $("#iptUserName").val().trim(),
+                    "password": $("#iptPassword").val().trim(),
+                },
+                "success": function (data) {
+                    console.log(data)
+                }
+            })
+        })
+    </script>
+</div>
 </body>
 </html>
